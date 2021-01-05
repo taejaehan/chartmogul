@@ -20,7 +20,7 @@
                 </div>
             </div>
         </section>
-        <section class="section hero-addendum" style="user-select: auto;">
+        <section class="section hero-addendum scrolled" style="user-select: auto;">
             <div class="container" style="user-select: auto;">
                 <div class="row" style="user-select: auto;">
                     <div class="col-sm-8" style="user-select: auto;">
@@ -145,7 +145,6 @@
                                 <h2 style="user-select: auto;">Cash flow</h2>
                                 <div class="value" style="user-select: auto;"> <label class="dollar" style="user-select: auto;">$1,444,230</label> <label class="percentage" style="user-select: auto; color: rgb(19, 163, 223);">+ 10.45%</label> </div>
                                 </div>
-                                <!--?xml version="1.0" encoding="UTF-8"?--> 
                                 <svg width="277px" height="135px" viewBox="0 0 277 135" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="user-select: auto;">
                                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" style="user-select: auto;">
                                     <g id="subscription-data-platform" transform="translate(-1152.000000, -1731.000000)" style="user-select: auto;">
@@ -169,7 +168,7 @@
                 </div>
             </div>
         </section>
-        <section class="section section--pitch first" style="user-select: auto;">
+        <section class="section section--pitch first scrolled" style="user-select: auto;">
             <div class="container" style="user-select: auto;">
                 <div class="row" style="user-select: auto;">
                     <div class="col-sm-5 col-sm-offset-1" style="user-select: auto;">
