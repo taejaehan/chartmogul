@@ -1,6 +1,8 @@
 .DS_Store
 node_modules/
 /dist/
+src/components/CartmogulTest.vue
+src/components/CanvasEffectWave.vue
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

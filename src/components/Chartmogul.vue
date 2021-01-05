@@ -7,13 +7,11 @@
 
 <script>
 import ChartmogulOrigin from './ChartmogulOrigin.vue';
-import ChartmogulTest from './ChartmogulTest.vue';
 import CanvasEffect from './CanvasEffect.vue';
 export default {
   name: 'App',
   components: {
     ChartmogulOrigin,
-    ChartmogulTest,
     CanvasEffect,
   },
 }
@@ -25,9 +23,6 @@ export default {
       z-index: 3;
       background:none;
       position: relative
-      /* position: absolute;
-      height: 500px;
-      width:500px; */
   }
   .canvas-container{
       width:100%;
