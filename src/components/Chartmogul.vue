@@ -33,8 +33,11 @@ export default {
       left: 0;
       -webkit-transition:top 0.1s;
   }
+  .hero.banner, .hero.section{
+    background:none !important;
+  }
   .hero--front{
-    background:none;
+    background:none !important;
   }
   .hero-tagline, .hero-description{
     color:black !important;
