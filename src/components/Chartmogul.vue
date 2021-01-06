@@ -41,18 +41,27 @@
     background:none !important;
   }
   .hero-tagline, .hero-description{
-    color:black !important;
+    /* color:black !important; */
   }
   .hero--front .hero__content .hero-textual .btn-block .btn-text--more{
-    color:black !important;
+    /* color:black !important; */
+  }
+  .col-sm-offset-1{
+    /* color:#fff; */
+  }
+  .first .section-title, .first .section-description{
+    /* color:#fff; */
+  }
+  .first .btn-text--more{
+    /* color:#fff; */
   }
   .page-front .section--partners{
     /* background:none; */
-    opacity: 0.8;
+    opacity: 0.9;
   }
   .page-front .hero-addendum .container{
     /* background:none; */
-    opacity: 0.8;
+    opacity: 0.9;
   }
   section{
     /* border:1px solid black;

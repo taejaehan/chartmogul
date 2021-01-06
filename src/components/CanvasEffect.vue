@@ -20,18 +20,46 @@
                 maxWidth : 0,
                 widthGap : 0,
                 last_known_scroll_position : 0,
+                current_section : 0,
                 isDown : 0, mouseX : 0, mouseY : 0,
                 points : [], isShowPoint : 0,
-                isColor : 1,
+                isColor : 0,
                 STIFF : 0.1,
+                MAX_STRENTH : 0.7,
                 FRICTION : 0.87,
                 TOTALWAVE : 3,
                 TOTALPOINTS : 8,
+                // COLORS : [
+                //     [   
+                //         [
+                //             {h:0, s:0, l:100}
+                //         ],
+                //         [
+                //             {h:204, s:25, l:25}
+                //         ],
+                //         [
+                //             {h:37, s:56, l:94}
+                //         ],
+                //         [
+                //             {h:0, s:0, l:100}
+                //         ],
+                //         [
+                //             {h:37, s:56, l:94}
+                //         ],
+                //         [
+                //             {h:0, s:0, l:100}
+                //         ],
+                //     ],
+                //     [
+                //         {h:0, s:100, l:50},
+                //         {h:60, s:100, l:50},
+                //         {h:180, s:100, l:50}
+                //     ]],
                 COLORS : [
-                    [
-                        {h:189, s:100, l:46},
-                        {h:196, s:100, l:39},
-                        {h:207, s:100, l:31}
+                    [   
+                        {h:190, s:90, l:70},
+                        {h:196, s:70, l:30},
+                        {h:207, s:24, l:24}
                     ],
                     [
                         {h:0, s:100, l:50},
@@ -65,7 +93,7 @@
                 this.stageHeight = window.innerHeight;
 
                 this.stageWidthHalf = this.stageWidth >> 1;
-                this.stageHeightHalf = this.stageHeight / 1.5;
+                this.stageHeightHalf = this.stageHeight / 1.4;
 
                 this.widthGap = this.stageWidth / this.TOTALPOINTS >> 1;
                 this.maxWidth = this.stageWidth + (this.widthGap * 2);
@@ -109,14 +137,24 @@
                 this.loop();
             },
             loop() {
+
+                if(this.current_section > 1) return;
+
                 this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
                 
-                // this.ctx.beginPath();
-                // this.ctx.rect(0, 0, this.stageWidth, this.stageHeight);
-                // this.ctx.fill();
+                
                 var i, arr = [0, 5, -5];
                 for (i=0; i<this.TOTALWAVE; i++) {
+                    
+                    // var afterColor = this.COLORS[this.isColor][this.current_section+1][i];
+                    // this.ctx.fillStyle = 'hsla(' + afterColor.h + ', ' + afterColor.s + '%, ' + afterColor.l + '%, 1)';
+                    // this.ctx.beginPath();
+                    // this.ctx.rect(0, 0, this.stageWidth, this.stageHeight);
+                    // this.ctx.fill();
+                    // this.ctx.closePath(); 
+
                     this.draw(this.points[i], this.COLORS[this.isColor][i], this.SPRING[i], arr[i]);
+                    // this.draw(this.points[i], this.COLORS[this.isColor][this.current_section][i], this.SPRING[i], arr[i]);
                 }
 
                 if (this.isShowPoint) {
@@ -126,13 +164,22 @@
             },
             draw(point, color, spring, gap) {
                 this.ctx.beginPath();
-                this.ctx.fillStyle = 'hsla(' + color.h + ', ' + color.s + '%, ' + color.l + '%, 0.4)';
+                this.ctx.fillStyle = 'hsla(' + color.h + ', ' + color.s + '%, ' + color.l + '%, 0.9)';
+                // this.ctx.fillStyle = "#314451";
+                // this.ctx.fillStyle = "rgba(49,68,81,1)"
 
-                var prevx = point[0].x
-                var prevy = point[0].y
+                var moveY = window.scrollY;
+                var mouseAndScollY = this.mouseY;
+                if(this.current_section > 9 ){
+                    moveY = 0;
+                    mouseAndScollY -= window.scrollY;
+                }
+                var prevx = point[0].x;
+                var prevy = point[0].y - moveY;
                 var i, dx, dy, dist, my, cx, cy;
 
-                var mouseAndScollY = this.mouseY - window.scrollY;
+                // var mouseAndScollY = this.mouseY - window.scrollY;
+                
                 this.ctx.moveTo(prevx, prevy);
                 for (i=1; i<this.TOTALPOINTS; i++) {
 
@@ -140,28 +187,37 @@
                     dy = mouseAndScollY - point[i].y;
                     dist = Math.sqrt(dx * dx + dy * dy) * this.STIFF;
                     
+                    // if(mouseAndScollY < point[i].y){
+                    //     my = (mouseAndScollY / dist) + this.stageHeightHalf - (window.scrollY*this.slope*i);
+                    // }else{
+                    //     my = -(mouseAndScollY / dist) + this.stageHeightHalf - (window.scrollY*this.slope*i);
+                    // }
+                    
                     if(mouseAndScollY < point[i].y){
-                        my = (mouseAndScollY / dist) + this.stageHeightHalf - (window.scrollY*this.slope*i);
+                        my = (mouseAndScollY / dist * this.MAX_STRENTH) + this.stageHeightHalf - 20*i;
                     }else{
-                        my = -(mouseAndScollY / dist) + this.stageHeightHalf - (window.scrollY*this.slope*i);
+                        my = -(mouseAndScollY / dist * this.MAX_STRENTH) + this.stageHeightHalf - 20*i;
                     }
                     
                     point[i].vy += (my - point[i].y + gap + i) * spring;
                     point[i].vy *= this.FRICTION;
-                    point[i].y += point[i].vy ;
+                    point[i].y += point[i].vy;
 
-                    cx = (prevx + point[i].x) * .9;
-                    cy = (prevy + point[i].y) * .9;
-                    this.ctx.lineTo(prevx, prevy, cx, cy, cx, cy, point[i].x, point[i].y);
+                    cx = (prevx + point[i].x) * .5;
+                    cy = (prevy + point[i].y) * .5;
+                    this.ctx.lineTo(prevx, prevy, cx, cy, cx, cy, point[i].x, point[i].y - moveY);
+                    // this.ctx.bezierCurveTo(prevx, prevy, cx, cy, cx, cy, point[i].x, point[i].y); 
    
                     prevx = point[i].x;
-                    prevy = point[i].y;
+                    prevy = point[i].y - moveY;
 
                     point[i].y += point[i].vy;
                 }
                 this.ctx.lineTo(prevx, prevy);
-                this.ctx.lineTo(this.maxWidth, this.stageHeight);
-                this.ctx.lineTo(point[0].x, this.stageHeight);
+                // this.ctx.lineTo(this.maxWidth, this.stageHeight);
+                // this.ctx.lineTo(point[0].x, this.stageHeight);
+                this.ctx.lineTo(this.maxWidth, 0);
+                this.ctx.lineTo(point[0].x, 0);
                 this.ctx.fill();
                 this.ctx.closePath();
             },
@@ -216,14 +272,21 @@
             onScroll(){
                 this.last_known_scroll_position = window.scrollY;
                 var ticking = false;
-                
-
+                var cs = 0;
                 this.section.forEach((sec, i) => {
                     if(sec.offsetTop < this.last_known_scroll_position-132){
                         sec.classList.add('scrolled');
                     }
+                    // if(sec.offsetTop < this.last_known_scroll_position-132 + this.stageHeight - this.stageHeightHalf){
+                    //     cs = i;
+                    // }
+                    if(sec.offsetTop < this.last_known_scroll_position+100 + this.stageHeight - this.stageHeightHalf){
+                        cs = i;
+                    }
+                    
                 });
 
+                this.current_section = cs;
             }
         }
     }
