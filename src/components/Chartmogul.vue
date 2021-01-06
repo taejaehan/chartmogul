@@ -60,7 +60,7 @@ export default {
   }
   @media (min-width: 992px){
     .hero--front .hero__content {
-        margin-top: 0;
+        margin-top: 0 !important;
     }
     .chartmogul-container{
       margin-top:106px;
