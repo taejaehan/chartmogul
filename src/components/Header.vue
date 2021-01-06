@@ -102,6 +102,9 @@ export default {
           padding-right: 3%;
           padding-left: 3%;
       }
+      .hero--front .hero__content .hero-video{
+        height: 100%;
+      }
       ul{
         display: none;
       }

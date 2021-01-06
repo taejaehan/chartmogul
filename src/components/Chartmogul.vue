@@ -6,32 +6,33 @@
 </template>
 
 <script>
-import ChartmogulOrigin from './ChartmogulOrigin.vue';
-import CanvasEffect from './CanvasEffect.vue';
-export default {
-  name: 'App',
-  components: {
-    ChartmogulOrigin,
-    CanvasEffect,
-  },
-}
+  import ChartmogulOrigin from './ChartmogulOrigin.vue';
+  import CanvasEffect from './CanvasEffect.vue';
+
+  export default {
+    name: 'App',
+    components: {
+      ChartmogulOrigin,
+      CanvasEffect
+    }
+  }
 </script>
 
 <style>
   .chartmogul-container{
-      margin-top:132px;
-      z-index: 3;
-      background:none;
-      position: relative
+    margin-top:132px;
+    z-index: 3;
+    background:none;
+    position: relative
   }
   .canvas-container{
-      width:100%;
-      height: 100%;
-      z-index: 2;
-      position: fixed;
-      top: 0;
-      left: 0;
-      -webkit-transition:top 0.1s;
+    width:100%;
+    height: 100%;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    -webkit-transition:top 0.1s;
   }
   .hero.banner, .hero.section{
     background:none !important;
@@ -58,12 +59,17 @@ export default {
     border-top:3px solid red; */
     margin:0 !important;
   }
-  @media (min-width: 768px){
+  .hero--front .hero__content .hero-video{
+    height: 100%;
+  }
+  @media (min-width:768px) {
+
     .hero--front .hero__content {
-        margin-top: 0 !important;
+      margin-top: 0 !important;
     }
+
     .chartmogul-container{
-      margin-top:106px;
+      margin-top: 106px;
     }
   }
 </style>
