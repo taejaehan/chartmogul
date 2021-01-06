@@ -49,6 +49,10 @@
         mounted(){
             this.section = [...document.getElementsByTagName('section')];
             this.canvas = document.getElementsByTagName('canvas')[0];
+            // this.canvas.width = this.stageWidth * 2;
+            // this.canvas.height = this.stageHeight * 2;
+            // this.ctx.scale(2,2);
+
             this.container = document.getElementById('canvas_container');
             window.addEventListener('resize', this.onResize, true);
             this.onResize();
@@ -106,7 +110,10 @@
             },
             loop() {
                 this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
-
+                
+                // this.ctx.beginPath();
+                // this.ctx.rect(0, 0, this.stageWidth, this.stageHeight);
+                // this.ctx.fill();
                 var i, arr = [0, 5, -5];
                 for (i=0; i<this.TOTALWAVE; i++) {
                     this.draw(this.points[i], this.COLORS[this.isColor][i], this.SPRING[i], arr[i]);

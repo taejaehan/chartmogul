@@ -87,6 +87,12 @@ export default {
       float: right;
       display: none;
     }
+    @media (min-width: 992px){
+      #header{
+        padding-top: 30px;
+        padding-bottom: 25px;
+      }
+    }
     @media (max-width:768px) {
       #header{
         padding-top: 30px;

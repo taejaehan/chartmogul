@@ -58,4 +58,12 @@ export default {
     border-top:3px solid red; */
     margin:0 !important;
   }
+  @media (min-width: 992px){
+    .hero--front .hero__content {
+        margin-top: 0;
+    }
+    .chartmogul-container{
+      margin-top:106px;
+    }
+  }
 </style>
