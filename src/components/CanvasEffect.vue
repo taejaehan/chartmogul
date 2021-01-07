@@ -93,7 +93,7 @@
                 this.stageHeight = window.innerHeight;
 
                 this.stageWidthHalf = this.stageWidth >> 1;
-                this.stageHeightHalf = this.stageHeight / 1.4;
+                this.stageHeightHalf = this.stageHeight / 0.97;
 
                 this.widthGap = this.stageWidth / this.TOTALPOINTS >> 1;
                 this.maxWidth = this.stageWidth + (this.widthGap * 2);
