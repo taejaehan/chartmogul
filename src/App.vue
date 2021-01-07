@@ -49,8 +49,6 @@ body, html{
   margin:0;
   padding:0;
   background:none;
-  /* width:100%;
-  height:100%; */
 }
 #app {
   font-family: brown-font, sans-serif;
@@ -60,7 +58,6 @@ body, html{
   color: #2c3e50;
   text-align: left;
   background:none;
-  /* font-size: 2.0em; */
 }
 h1{
   font-weight: 800;

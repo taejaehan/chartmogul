@@ -40,21 +40,6 @@
   .hero--front{
     background:none !important;
   }
-  .hero-tagline, .hero-description{
-    /* color:black !important; */
-  }
-  .hero--front .hero__content .hero-textual .btn-block .btn-text--more{
-    /* color:black !important; */
-  }
-  .col-sm-offset-1{
-    /* color:#fff; */
-  }
-  .first .section-title, .first .section-description{
-    /* color:#fff; */
-  }
-  .first .btn-text--more{
-    /* color:#fff; */
-  }
   .page-front .section--partners{
     /* background:none; */
     opacity: 0.9;
@@ -64,8 +49,6 @@
     opacity: 0.9;
   }
   section{
-    /* border:1px solid black;
-    border-top:3px solid red; */
     margin:0 !important;
   }
   .hero--front .hero__content .hero-video{

@@ -29,32 +29,6 @@
                 FRICTION : 0.87,
                 TOTALWAVE : 3,
                 TOTALPOINTS : 8,
-                // COLORS : [
-                //     [   
-                //         [
-                //             {h:0, s:0, l:100}
-                //         ],
-                //         [
-                //             {h:204, s:25, l:25}
-                //         ],
-                //         [
-                //             {h:37, s:56, l:94}
-                //         ],
-                //         [
-                //             {h:0, s:0, l:100}
-                //         ],
-                //         [
-                //             {h:37, s:56, l:94}
-                //         ],
-                //         [
-                //             {h:0, s:0, l:100}
-                //         ],
-                //     ],
-                //     [
-                //         {h:0, s:100, l:50},
-                //         {h:60, s:100, l:50},
-                //         {h:180, s:100, l:50}
-                //     ]],
                 COLORS : [
                     [   
                         {h:190, s:90, l:70},
@@ -77,9 +51,6 @@
         mounted(){
             this.section = [...document.getElementsByTagName('section')];
             this.canvas = document.getElementsByTagName('canvas')[0];
-            // this.canvas.width = this.stageWidth * 2;
-            // this.canvas.height = this.stageHeight * 2;
-            // this.ctx.scale(2,2);
 
             this.container = document.getElementById('canvas_container');
             window.addEventListener('resize', this.onResize, true);
@@ -110,7 +81,6 @@
                     this.points[i] = [];
 
                     for (k=0; k<this.TOTALPOINTS; k++) {
-                        // point = {x: this.maxWidth / (this.TOTALPOINTS - 1) * k - this.widthGap, y:this.stageHeightHalf + (Math.random() * 50), vy:0};
                         point = {x: this.maxWidth / (this.TOTALPOINTS - 1) * k - this.widthGap, y:this.stageHeightHalf, vy:0};
                         this.points[i][k] = point;
                     }
@@ -145,16 +115,8 @@
                 
                 var i, arr = [0, 5, -5];
                 for (i=0; i<this.TOTALWAVE; i++) {
-                    
-                    // var afterColor = this.COLORS[this.isColor][this.current_section+1][i];
-                    // this.ctx.fillStyle = 'hsla(' + afterColor.h + ', ' + afterColor.s + '%, ' + afterColor.l + '%, 1)';
-                    // this.ctx.beginPath();
-                    // this.ctx.rect(0, 0, this.stageWidth, this.stageHeight);
-                    // this.ctx.fill();
-                    // this.ctx.closePath(); 
 
                     this.draw(this.points[i], this.COLORS[this.isColor][i], this.SPRING[i], arr[i]);
-                    // this.draw(this.points[i], this.COLORS[this.isColor][this.current_section][i], this.SPRING[i], arr[i]);
                 }
 
                 if (this.isShowPoint) {
@@ -165,33 +127,19 @@
             draw(point, color, spring, gap) {
                 this.ctx.beginPath();
                 this.ctx.fillStyle = 'hsla(' + color.h + ', ' + color.s + '%, ' + color.l + '%, 0.9)';
-                // this.ctx.fillStyle = "#314451";
-                // this.ctx.fillStyle = "rgba(49,68,81,1)"
 
                 var moveY = window.scrollY;
                 var mouseAndScollY = this.mouseY;
-                if(this.current_section > 9 ){
-                    moveY = 0;
-                    mouseAndScollY -= window.scrollY;
-                }
                 var prevx = point[0].x;
                 var prevy = point[0].y - moveY;
                 var i, dx, dy, dist, my, cx, cy;
 
-                // var mouseAndScollY = this.mouseY - window.scrollY;
-                
                 this.ctx.moveTo(prevx, prevy);
                 for (i=1; i<this.TOTALPOINTS; i++) {
 
                     dx = this.mouseX - point[i].x;
                     dy = mouseAndScollY - point[i].y;
                     dist = Math.sqrt(dx * dx + dy * dy) * this.STIFF;
-                    
-                    // if(mouseAndScollY < point[i].y){
-                    //     my = (mouseAndScollY / dist) + this.stageHeightHalf - (window.scrollY*this.slope*i);
-                    // }else{
-                    //     my = -(mouseAndScollY / dist) + this.stageHeightHalf - (window.scrollY*this.slope*i);
-                    // }
                     
                     if(mouseAndScollY < point[i].y){
                         my = (mouseAndScollY / dist * this.MAX_STRENTH) + this.stageHeightHalf - 20*i;
@@ -214,8 +162,6 @@
                     point[i].y += point[i].vy;
                 }
                 this.ctx.lineTo(prevx, prevy);
-                // this.ctx.lineTo(this.maxWidth, this.stageHeight);
-                // this.ctx.lineTo(point[0].x, this.stageHeight);
                 this.ctx.lineTo(this.maxWidth, 0);
                 this.ctx.lineTo(point[0].x, 0);
                 this.ctx.fill();
@@ -277,9 +223,6 @@
                     if(sec.offsetTop < this.last_known_scroll_position-132){
                         sec.classList.add('scrolled');
                     }
-                    // if(sec.offsetTop < this.last_known_scroll_position-132 + this.stageHeight - this.stageHeightHalf){
-                    //     cs = i;
-                    // }
                     if(sec.offsetTop < this.last_known_scroll_position+100 + this.stageHeight - this.stageHeightHalf){
                         cs = i;
                     }
